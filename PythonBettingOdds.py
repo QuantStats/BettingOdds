@@ -6,8 +6,8 @@ from scipy.optimize import broyden1
 
 class odd:
 
-##class variables go here in the future
-##under construction
+##this is a minimal working example
+##class variables can go here in the future
 
     #the poisson probability for under n+0.5 odd market at tau, tau is defined
     #as the remaining time for a match
