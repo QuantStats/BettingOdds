@@ -7,22 +7,22 @@ from math import factorial
 class odd:
 
     def __init__(self, lam):
-        self._lam = lam
+        self.lam = lam
 
     #the poisson probability for under n+0.5 odd market at tau, tau is defined
     #as the remaining time for a match
     
     def pois_prob(self, n, T, tau=None):
-        lam = self._lam
+        lam = self.lam
         if tau is None:
             prob_vec = [exp(-lam)*sum([lam**j/(factorial(j)) \
-                                       for j in range(0, k+1)]) for k in range(0, n+1)]           
+                                       for _ in range(0, k+1)]) for _ in range(0, n+1)]           
 
         else:
             R = lam/T
             prob_vec = np.zeros((1,len(tau)))
-            for j in range(0,n+1):
-                temp = (exp(-R*tau)*((R*tau)**(j)))/factorial(j)
+            for _ in range(0,n+1):
+                temp = (exp(-R*tau)*((R*tau)**(_)))/factorial(_)
                 temp=temp.reshape((1,len(temp)))
                 prob_vec = np.concatenate((prob_vec,temp),axis=0)
             prob_vec = np.cumsum(prob_vec,axis=0)
@@ -36,8 +36,8 @@ class odd:
     def visual(self, t, dec_odd):
         fig = plt.figure(figsize=(8,6))
         plt.ion()
-        for j in range(dec_odd.shape[0]):
-            plt.plot(t, dec_odd[j],label='Under '+str(j)+'.5')
+        for _ in range(dec_odd.shape[0]):
+            plt.plot(t, dec_odd[_],label='Under '+str(_)+'.5')
 
         plt.title('Decimal odd for the under-goal market')
         plt.xlabel('Time (t)')
